@@ -1,3 +1,4 @@
+
 GET http://localhost:3000/products
 
 ### create a product
@@ -5,8 +6,8 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-    "name": "iPhone 11 Pro Max",
-    "price": 1149
+    "name": "Apple Watch",
+    "price": 699
 
 }
 

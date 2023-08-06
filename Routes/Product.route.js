@@ -3,12 +3,25 @@ const router = express.Router();
 
 const Product = require('../Models/Product.model')
 
-router.get('/',(req,res,next) => {
-    next(new Error("cannot get a list of all products"))
+router.get('/',async(req,res,next) => {
+    // next(new Error("cannot get a list of all products"))
     // res.send('getting a list of all products..');
+    try {
+        const results = await Product.find({}, {__v: 0});
+        // second curly brace is projection you can mention things as 1 which you want to get oterwise 0
+        // const results = await Product.find({}, { name: 1,price: 1, _id: 0});
+        // to get all products of 699
+        // const results = await Product.find({price: 699},{});
+        res.send(results)
+
+    } catch (error) {
+       console.log(errror.message); 
+
+    }
+
 });
 
-// async method 
+// async and await method , This method is more cleaner then the promise method
 router.post('/', async(req,res,next) => {
 
     try {
@@ -31,7 +44,7 @@ router.post('/', async(req,res,next) => {
     
     
     
-    
+    // Promise method
     
     
     
