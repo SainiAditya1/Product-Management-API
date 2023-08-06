@@ -1,0 +1,15 @@
+{
+  "name": "restapi",
+  "version": "1.0.0",
+  "description": "restapi",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Aditya Saini",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.1"
+  }
+}
