@@ -69,8 +69,19 @@ router.post('/', async(req,res,next) => {
     // res.send('product created');
 });
 
-router.get('/:id', (req,res,next) =>{
-    res.send('getting a single product')
+router.get('/:id', async(req,res,next) =>{
+    // res.send('getting a single product')
+    const id = req.params.id
+    // console.log(id);
+    // res.send(id)
+    try {
+        // const product = await Product.findById(id)
+        const product = await Product.findOne({_id: id });
+        res.send(product)
+
+    } catch (error) {
+        console.log(error.message);
+    }
 
 });
 

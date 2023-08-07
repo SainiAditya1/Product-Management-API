@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### get a product by id
-GET  http://localhost:3000/products/id
+GET  http://localhost:3000/products/64cf6a7387c0c6d91ccdc531
 
 ### update a product by id
 
