@@ -75,8 +75,9 @@ router.get('/:id', async(req,res,next) =>{
     // console.log(id);
     // res.send(id)
     try {
-        // const product = await Product.findById(id)
-        const product = await Product.findOne({_id: id });
+        const product = await Product.findById(id)
+        // Product.findById(id) is the best method as compare to Product.findOne
+        // const product = await Product.findOne({_id: id });
         res.send(product)
 
     } catch (error) {
@@ -85,10 +86,31 @@ router.get('/:id', async(req,res,next) =>{
 
 });
 
-router.patch('/:id', (req,res,next) =>{
-    res.send('Updating a single product')
+// updating a product by id
+
+router.patch('/:id', async(req,res,next) =>{
+
+   
+    try {
+        const id = req.params.id;
+        const updates = req.body;
+        const options = {new: true };
+
+        const result = await Product.findByIdAndUpdate(id,updates,options);
+        res.send(result);
+
+
+    } catch (error) {
+      console.log(error.message);
+    }
+
+
+
+    // res.send('Updating a single product')
     
 });
+
+
 
 router.delete('/:id', (req,res,next) =>{
     res.send('deleting a single product')

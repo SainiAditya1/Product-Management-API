@@ -16,7 +16,12 @@ GET  http://localhost:3000/products/64cf6a7387c0c6d91ccdc531
 
 ### update a product by id
 
-PATCH  http://localhost:3000/products/id
+PATCH  http://localhost:3000/products/64cf6a7387c0c6d91ccdc531
+Content-Type: application/json
+
+{   "name":"iMac ",
+    "price": 2799
+}
 
 ### delete a product by id
 
