@@ -112,8 +112,16 @@ router.patch('/:id', async(req,res,next) =>{
 
 
 
-router.delete('/:id', (req,res,next) =>{
-    res.send('deleting a single product')
+router.delete('/:id', async(req,res,next) =>{
+
+    const id = req.params.id
+    try {
+        const result = await Product.findByIdAndDelete(id)
+        res.send(result);
+    } catch (error) {
+        console.log(error.message);
+    }
+    // res.send('deleting a single product')
     
 });
 
