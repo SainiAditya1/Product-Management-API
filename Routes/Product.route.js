@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const createError = require('http-errors');
+const mongoose = require('mongoose');
 
 const Product = require('../Models/Product.model')
 
@@ -15,7 +17,7 @@ router.get('/',async(req,res,next) => {
         res.send(results)
 
     } catch (error) {
-       console.log(errror.message); 
+       console.log(error.message); 
 
     }
 
@@ -31,6 +33,11 @@ router.post('/', async(req,res,next) => {
 
     } catch (error) {
         console.log(error.message);
+        if(error.name === 'ValidationError') {
+            next(createError(422, error.message));
+            return;
+        }
+        next(error);
     }
 
   
@@ -69,19 +76,30 @@ router.post('/', async(req,res,next) => {
     // res.send('product created');
 });
 
+// get a product by id
 router.get('/:id', async(req,res,next) =>{
     // res.send('getting a single product')
     const id = req.params.id
     // console.log(id);
     // res.send(id)
     try {
-        const product = await Product.findById(id)
+        const product = await Product.findById(id);
         // Product.findById(id) is the best method as compare to Product.findOne
         // const product = await Product.findOne({_id: id });
-        res.send(product)
+        if (!product) {
+            throw createError(404, 'Product does not exist.');
+        }
+        // console.log(product);
+        res.send(product);
 
     } catch (error) {
         console.log(error.message);
+        if(error instanceof mongoose.CastError) {
+            next(createError(400, "Invalid Product id"))
+            return;
+        }
+
+        next(error);
     }
 
 });
@@ -97,11 +115,19 @@ router.patch('/:id', async(req,res,next) =>{
         const options = {new: true };
 
         const result = await Product.findByIdAndUpdate(id,updates,options);
+        if(!result) {
+            throw createError(404, "Product does not exist");
+        }
         res.send(result);
 
 
     } catch (error) {
       console.log(error.message);
+      if (error instanceof mongoose.CastError) {
+        return next(createError(400, "Invalid Product Id")
+        )
+      }
+      next(error)
     }
 
 
@@ -110,16 +136,27 @@ router.patch('/:id', async(req,res,next) =>{
     
 });
 
-
+// delete a product by id
 
 router.delete('/:id', async(req,res,next) =>{
 
-    const id = req.params.id
+    const id = req.params.id;
     try {
-        const result = await Product.findByIdAndDelete(id)
+        const result = await Product.findByIdAndDelete(id);
+        console.log(result);
+        if (!result) {
+            throw createError(404, 'Product does not exist.');
+        }
+
         res.send(result);
     } catch (error) {
         console.log(error.message);
+        if(error instanceof mongoose.CastError) {
+            next(createError(400, "Invalid Product id"))
+            return;
+        }
+
+        next(error);
     }
     // res.send('deleting a single product')
     
@@ -128,3 +165,6 @@ router.delete('/:id', async(req,res,next) =>{
 
 
 module.exports = router;
+
+
+// 5.33

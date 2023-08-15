@@ -30,6 +30,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const createError = require('http-errors');
 
 // mongodb+srv://sainiaditya1:<password>@cluster0.r0rcu1h.mongodb.net/?retryWrites=true&w=majority
 
@@ -107,11 +108,13 @@ app.all('/test', (req,res) => {
 const ProductRoute = require('./Routes/Product.route');
 
 app.use('/products',ProductRoute);
+// 404 handler ans pass to error handler
 app.use((req,res,next) =>{
     
-    const arr = new Error("Not found")
-    err.status = 404
-    next(err)
+    // const arr = new Error("Not found")
+    // err.status = 404
+    // next(err);
+    next(createError(404, 'Not found'));
 
 });
 
@@ -168,3 +171,4 @@ app.listen(3000, () => {
 
 
 // jooH0pRtBixP1iBK
+// 9.46
