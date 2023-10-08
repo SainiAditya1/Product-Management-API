@@ -30,7 +30,7 @@ GET http://localhost:3000/products
 ### Create a new product by providing a JSON payload with product details.
 
 ### Example Request:
-```
+```http
 POST http://localhost:3000/products
 Content-Type: application/json
 
@@ -46,7 +46,7 @@ Content-Type: application/json
 
 ### Example Request:
 
-```
+```http
 PATCH http://localhost:3000/products/64cf470e3cf25bcafc40b3fe
 Content-Type: application/json
 
@@ -59,7 +59,7 @@ Content-Type: application/json
 ### Delete a product by providing its unique identifier.
 
 ### Example Request:
-```
+```http
 DELETE http://localhost:3000/products/64de24bf75dd66fda472c765
 ```
 
