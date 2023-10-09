@@ -67,6 +67,6 @@ DELETE http://localhost:3000/products/64de24bf75dd66fda472c765
 ### If you attempt to access a route that does not exist, you will receive a 404 Not Found response.
 
 ### Example Request:
-```
+```http
 GET http://localhost:3000/abc_xyz
 ```
