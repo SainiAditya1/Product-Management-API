@@ -31,6 +31,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
+const dotenv = require('dotenv');
+require('dotenv').config();
 
 // mongodb+srv://sainiaditya1:<password>@cluster0.r0rcu1h.mongodb.net/?retryWrites=true&w=majority
 
@@ -44,22 +46,19 @@ app.use(express.urlencoded({extended: true}));
 
 // ?retryWrites=true&w=majority
 mongoose
-    .connect('mongodb+srv://cluster0.r0rcu1h.mongodb.net/',
-    { 
-        dbName: 'restapi',
-        user:'sainiaditya1',
-        pass: 'jooH0pRtBixP1iBK' ,
-        useNewUrlParser: true, 
-        useUnifiedTopology: true })
-    .then(() => {
-        // const app = express()
-
-        // app.listen(3000,() => {
-            console.log('mongodb connected')
-        // })
-
-    });
-
+  .connect(process.env.MONGO_URI, {
+    // dbName: process.env.DB_NAME,
+    // user: process.env.DB_USER,
+    // pass: process.env.DB_PASS,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error.message);
+  });
 
 
 
