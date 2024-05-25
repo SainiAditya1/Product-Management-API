@@ -52,7 +52,7 @@ Content-Type: application/json
 PUT https://product-management-api-5ivy.onrender.com/{id}
 Content-Type: application/json
 
-{
+{   "name": "updated name",
     "price": 1249
 }
 ```
