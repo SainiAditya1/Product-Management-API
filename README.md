@@ -1,4 +1,4 @@
-This README file provides information about the endpoints and usage of the API hosted at `http://localhost:3000`.
+This README file provides information about the endpoints and usage of the API hosted at `https://product-management-api-5ivy.onrender.com/`.
 
 ## Table of Contents
 
@@ -39,6 +39,21 @@ Content-Type: application/json
 {
     "name": "Vivo ",
     "price": 12999
+}
+```
+
+## Update a product by id
+
+## Update a product y id
+
+### Example Request:
+
+```http
+PUT https://product-management-api-5ivy.onrender.com/{id}
+Content-Type: application/json
+
+{
+    "price": 1249
 }
 ```
 
