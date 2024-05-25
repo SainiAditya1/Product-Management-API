@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ## Update a product by id
 
-## Update a product y id
+### Update a product by providing its id.
 
 ### Example Request:
 
