@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ## Update a product by id
 
-## Update a product y id
+### Update a product by providing its id.
 
 ### Example Request:
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 PUT https://product-management-api-5ivy.onrender.com/{id}
 Content-Type: application/json
 
-{
+{   "name": "updated name",
     "price": 1249
 }
 ```
