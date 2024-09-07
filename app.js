@@ -31,6 +31,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
+const cors = require('cors'); 
 const dotenv = require('dotenv');
 require('dotenv').config();
 
@@ -40,6 +41,7 @@ require('dotenv').config();
 const app = express();
 // RESTAPI is the database name
 // mongoose.connect("mongodb://localhost:27017/RESTAPI", { useNewUrlParser: true, useUnifiedTopology: true } );// Adding this option is recommended for removing deprecation warning.
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
